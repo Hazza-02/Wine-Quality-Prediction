@@ -20,3 +20,7 @@ combined_wine_df = wine_loader.combined_df
 combined_wine_df = preprocess.encode_wine_type(combined_wine_df)
 
 display(combined_wine_df)
+
+# Check for missing values 
+#print("\nMissing values per column:")
+#print(combined_wine_df.isnull().sum())
