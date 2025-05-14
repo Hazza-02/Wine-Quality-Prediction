@@ -125,13 +125,3 @@ class WineDataHandler:
                     plt.ylabel('Quality')
                     plt.show()
                     
-    def encode_wine_type(self, drop_first=True, inplace=True):
-        
-        df_encoded = pd.get_dummies(self.combined_df, columns=['wine_type'], drop_first=drop_first)
-        df_encoded = df_encoded.astype(int)
-        
-        if inplace:
-            self.combined_df = df_encoded
-            return self.combined_df 
-        else:
-            return df_encoded
