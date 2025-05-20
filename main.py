@@ -2,6 +2,7 @@ from dataloader import WineDataHandler
 from preprocess import preprocess
 import pandas as pd
 from IPython.display import display
+from sklearn.model_selection import train_test_split
 
 # Define the URLs
 red_wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
@@ -13,14 +14,23 @@ wine_loader = WineDataHandler(red_wine_url, white_wine_url)
 # Get the combined DataFrame
 combined_wine_df = wine_loader.combined_df
 
+"""
+Graph plots
+"""
 #wine_loader.plot_correlation_matrix()
 #wine_loader.plot_scatter_quality()
-# Encode wine type and get the encoded DataFrame
 
+# Encode wine type and get the encoded DataFrame
 combined_wine_df = preprocess.encode_wine_type(combined_wine_df)
 
-display(combined_wine_df)
+#display(combined_wine_df)
 
-# Check for missing values 
+X = combined_wine_df.drop("quality", axis=1) # All columns except 'quality'
+Y = combined_wine_df["quality"] # The target variable
+X_train, X_test, y_train, y_test = train_test_split(X, Y ,test_size=0.2)
+
+"""
+Check for missing values
+"""
 #print("\nMissing values per column:")
 #print(combined_wine_df.isnull().sum())
