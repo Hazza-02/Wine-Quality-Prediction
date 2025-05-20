@@ -1,8 +1,9 @@
 from dataloader import WineDataHandler
-from preprocess import preprocess
 import pandas as pd
 from IPython.display import display
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+
 
 # Define the URLs
 red_wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
@@ -38,6 +39,14 @@ combined_wine_df = encode_wine_type(combined_wine_df)
 X = combined_wine_df.drop("quality", axis=1) # All columns except 'quality'
 Y = combined_wine_df["quality"] # The target variable
 X_train, X_test, y_train, y_test = train_test_split(X, Y ,test_size=0.2)
+
+norm = MinMaxScaler().fit(X_train) # Fit min-max scaler on training data
+X_train_norm = norm.transform(X_train) # Transform the training data
+
+display(X_train_norm)
+ 
+
+
 
 """
 Check for missing values
