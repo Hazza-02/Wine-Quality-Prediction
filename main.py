@@ -4,7 +4,6 @@ from IPython.display import display
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-
 # Define the URLs
 red_wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
 white_wine_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
@@ -45,8 +44,6 @@ X_train_norm = norm.transform(X_train) # Transform the training data
 
 display(X_train_norm)
  
-
-
 
 """
 Check for missing values
