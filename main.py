@@ -21,8 +21,18 @@ Graph plots
 #wine_loader.plot_scatter_quality()
 
 # Encode wine type and get the encoded DataFrame
-combined_wine_df = preprocess.encode_wine_type(combined_wine_df)
-
+def encode_wine_type(df, drop_first=True, inplace=True):
+        
+        df_encoded = pd.get_dummies(df, columns=['wine_type'], drop_first=drop_first)
+        df_encoded = df_encoded.astype(int)
+            
+        if inplace:
+            df = df_encoded
+            return df
+        else:
+            return df_encoded
+    
+combined_wine_df = encode_wine_type(combined_wine_df)       
 #display(combined_wine_df)
 
 X = combined_wine_df.drop("quality", axis=1) # All columns except 'quality'
