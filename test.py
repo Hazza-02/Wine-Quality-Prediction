@@ -1,3 +1,3 @@
 """
-Tets the model 
+Test the model 
 """
